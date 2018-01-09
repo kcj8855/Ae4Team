@@ -1,0 +1,215 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.example.cjnote.ae4teamapp.SettingActivity">
+
+        <Button
+            android:id="@+id/storeIntroButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/filebtn_icons"
+            android:drawablePadding="30dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="20dp"
+            android:text="상점소개 및 정보"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/storeSettingView" />
+
+        <Button
+            android:id="@+id/storeSelectButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/suitcasebtn_icons"
+            android:drawablePadding="30dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="20dp"
+            android:text="상점유형 선택"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/storeIntroButton" />
+
+        <Button
+            android:id="@+id/storeRegisterButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/chargingbtn_icons"
+            android:drawablePadding="30dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="20dp"
+            android:text="상점주소 등록"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/storeSelectButton" />
+
+        <Button
+            android:id="@+id/userProfileButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/profilebtn_icons"
+            android:drawablePadding="30dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="20dp"
+            android:text="프로필"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userSettingView" />
+
+        <Button
+            android:id="@+id/changeNumberButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/iphonebtn_icons"
+            android:drawablePadding="30dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="20dp"
+            android:text="연락처변경"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userProfileButton" />
+
+        <Button
+            android:id="@+id/logOutButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/signoutbtn_icons"
+            android:drawablePadding="30dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="20dp"
+            android:text="로그아웃"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/changeNumberButton" />
+
+        <Button
+            android:id="@+id/thunderScreenButon"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/chargingbtn_icons"
+            android:drawablePadding="30dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="20dp"
+            android:text="번개스크린 화면 설정"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/functionSettingView" />
+
+        <Button
+            android:id="@+id/noticeButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/notificationbtn_icons"
+            android:drawablePadding="30dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="20dp"
+            android:text="알림 설정"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thunderScreenButon" />
+
+        <Button
+            android:id="@+id/addServiceButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/suitcasebtn_icons"
+            android:drawablePadding="30dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="20dp"
+            android:text="부가서비스 설정"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/withdrawalButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/deleteuserbtn_icons"
+            android:drawablePadding="30dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="20dp"
+            android:text="회원탈퇴"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addServiceButton" />
+
+
+        <TextView
+            android:id="@+id/storeSettingView"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="상점 설정"
+            android:textColor="@android:color/background_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/userProfileButton"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/userSettingView"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:background="@drawable/textviewborder"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:singleLine="false"
+            android:text="계정 설정"
+            android:textColor="@android:color/background_dark"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/storeRegisterButton" />
+
+        <TextView
+            android:id="@+id/functionSettingView"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_weight="1"
+            android:background="@drawable/textviewborder"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="기능 설정"
+            android:textColor="@android:color/background_dark"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logOutButton" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

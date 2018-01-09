@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Ae4TeamApp</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    //facebook login
+    <string name="facebook_app_id">2195121247381543</string>
+    <string name="fb_login_protocol_scheme">fb2195121247381543</string>
+    <string name="github_redirect_url">https://firebase.google.com</string>
+    <string name="github_client_id">144c3425589ec887733c</string>
+    <string name="github_client_secret">a64569faaa40ae40cf61313b30d9a1f2fdb072fc</string>
+    <string name="github_token">3c4979f04d9b8d8c11ae85da73b0801124a08485</string>
 </resources>

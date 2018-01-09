@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorProfile">#f7f6f1</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="textColorPrimary">#151414</color>
+    <color name="colorPrimaryDark">#7b7b7b</color>
+    <color name="colorAccent">#ef2e31</color>
+    <color name="windowbackground">#fdfdfd</color>
+    <color name="userProfileBackground">#f7f6ec</color>
+    <color name="userProfileText">#af301313</color>
+    <color name="textViewBox">#e7e4e4</color>
+    <color name="textViewHint">#d7d7d7</color>
+    <color name="requestButton">#ce452828</color>
+    <drawable name="bg_select">#e9eded</drawable>
 </resources>

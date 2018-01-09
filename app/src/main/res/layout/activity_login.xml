@@ -5,12 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.cjnote.ae4teamapp.LoginActivity">
-
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/carouselView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:fillColor="#FFFFFFFF"
+        app:pageColor="#00000000"
+        app:radius="6dp"
+        app:slideInterval="5000"
+        app:strokeColor="#FF777777"
+        app:strokeWidth="1dp">
+    </com.synnapps.carouselview.CarouselView>
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googleButton"
         android:layout_width="334dp"
-        android:layout_height="46dp"
+        android:layout_height="41dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
@@ -18,46 +28,34 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.465">
+        app:layout_constraintVertical_bias="0.735">
 
     </com.google.android.gms.common.SignInButton>
 
-    <Button
-        android:id="@+id/signOutButton"
-        android:layout_width="334dp"
-        android:layout_height="46dp"
-        android:layout_marginBottom="8dp"
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/facebookButton"
+        android:layout_width="326dp"
+        android:layout_height="31dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/common_google_signin_btn_text_light_normal_background"
-        android:text="로그아웃"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nonMemberButton"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/nonMemberButton"
-        android:layout_width="334dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/common_google_signin_btn_text_light_normal_background"
-        android:text="비회원 방문"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/googleButton" />
 
-    <TextView
-        android:id="@+id/userNickName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+    <Button
+        android:id="@+id/githubButton"
+        android:layout_width="325dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:hint="no user"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/googleButton"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/common_google_signin_btn_text_dark_focused"
+        android:text="Github Sign in"
+        android:textColor="@color/cardview_light_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facebookButton" />
 
 </android.support.constraint.ConstraintLayout>

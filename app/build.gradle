@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "com.example.cjnote.ae4teamapp"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -32,6 +32,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crash:11.6.2'
 
 
+    implementation 'com.android.support:design:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -48,7 +49,30 @@ dependencies {
     // Google auth
     compile 'com.google.android.gms:play-services-auth:11.6.2'
 
+    // Facebook auth
+    implementation 'com.facebook.android:facebook-login:[4,5)'
+    compile 'com.facebook.android:facebook-login:[4,5)'
+
+    // Github auth
+    implementation 'com.github.alorma:github-sdk:3.2.5'
+    compile 'com.github.alorma:github-sdk:3.2.5'
+
+    // Using the OkHttp Library for HTTP Networking
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+
+    // Using the Glide Library for Image loading
+//    compile 'com.github.bumptech.glide:glide:3.7.0'
+    // Carousel
+    compile 'com.synnapps:carouselview:0.1.4'
 }
+
+
+
+
+
+
+
+
 
 
 

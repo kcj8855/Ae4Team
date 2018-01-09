@@ -4,14 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cjnote.ae4teamapp.Test2Activity">
+    tools:context="com.example.cjnote.ae4teamapp.ContactInfoActivity">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test2Activity"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/phonNumberTextView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/profile_border"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="휴대폰 번호"
+        android:textColor="@color/userProfileText"
+        android:textSize="12sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

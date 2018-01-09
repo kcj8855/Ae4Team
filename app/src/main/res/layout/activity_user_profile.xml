@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.example.cjnote.ae4teamapp.userProfileActivity">
+
+        <ImageView
+            android:id="@+id/userProfileFicture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/button_selector"
+            android:maxHeight="100dp"
+            android:maxWidth="100dp"
+            android:onClick="onClick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/userNickNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="닉네임"
+            android:textColor="@color/userProfileText"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/userProfileFicture"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/userContactInfoTextView"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/profile_border"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="연락처정보"
+            android:textColor="@color/userProfileText"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userProfileFicture" />
+
+        <TextView
+            android:id="@+id/userEmailTextView"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="이메일"
+            android:textColor="@color/userProfileText"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userContactInfoTextView" />
+
+        <TextView
+            android:id="@+id/snsConnectTextView"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/profile_border"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="SNS연동"
+            android:textColor="@color/userProfileText"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userEmailTextView" />
+
+        <TextView
+            android:id="@+id/genderTextView"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:gravity="bottom|center_vertical"
+            android:paddingLeft="10dp"
+            android:text="성별"
+            android:textColor="@color/userProfileText"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/snsConnectTextView" />
+
+
+        <RadioGroup
+            android:id="@+id/genderRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="fill_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderTextView">
+
+            <RadioButton
+                android:id="@+id/womanButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="여자" />
+
+            <RadioButton
+                android:id="@+id/manButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="남자" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/birthTextView"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/profile_border"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="5dp"
+            android:paddingLeft="10dp"
+            android:text="생년월일\n생일을 입력시 맞춤 정보를 제공해드립니다"
+            android:textColor="@color/userProfileText"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderRadioGroup" />
+
+        <TextView
+            android:id="@+id/changePasswordTextView"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="비밀번호 변경하기"
+            android:textColor="@color/userProfileText"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/birthTextView" />
+
+        <TextView
+            android:id="@+id/secretSettingTextView"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/profile_border"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="비공개 설정"
+            android:textColor="@color/userProfileText"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/changePasswordTextView" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
