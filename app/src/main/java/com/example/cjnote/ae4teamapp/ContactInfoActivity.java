@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 public class ContactInfoActivity extends AppCompatActivity {
-    private String TAG = "contactinfoActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +31,11 @@ public class ContactInfoActivity extends AppCompatActivity {
         }
     }
 
-    public void IntentBack () {
-        Intent test3Intent = new Intent(ContactInfoActivity.this,  UserProfileActivity.class);
+    public void IntentBack() {
+        Intent test3Intent = new Intent(ContactInfoActivity.this, UserProfileActivity.class);
         startActivity(test3Intent);
         finish();
-        overridePendingTransition(R.anim.leftin_activity,R.anim.rightout_activity);
+        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
     }
 
 }

@@ -4,10 +4,14 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,7 +31,6 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
@@ -65,30 +68,59 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".UserProfileActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
-        <activity android:name=".ChangePhoneNumberActivity" />
-        <!--<provider-->
-            <!--android:name="android.support.v4.content.FileProvider"-->
-            <!--android:authorities="com.example.cjnote.ae4teamapp.provider"-->
-            <!--android:exported="false"-->
-            <!--android:grantUriPermissions="true">-->
-            <!--<meta-data-->
-                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
-                <!--android:resource="@xml/provider_paths" />-->
-        <!--</provider>-->
+
+        <activity android:name=".SettingActivity"
+            android:label="설정"/>
+
+        <activity
+            android:name=".UserProfileActivity"
+            android:label="내 프로필"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <activity android:name=".ChangePhoneNumberActivity"
+            android:label="휴대폰 번호 변경"/>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
-            android:grantUriPermissions="true"
-            android:configChanges="keyboardHidden|orientation|screenSize">
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
-        <activity android:name=".ContactInfoActivity"></activity>
+
+        <activity
+            android:name=".ContactInfoActivity"
+            android:label="연락처 정보" />
+
+        <activity
+            android:name=".AddProductActivity"
+            android:label="상품 등록하기" />
+
+        <activity
+            android:name=".MyProductActivity"
+            android:label="내 상품" />
+
+        <activity
+            android:name=".PurchaseHistoryActivity"
+            android:label="구매 내역" />
+
+        <activity
+            android:name=".SalesHistoryActivity"
+            android:label="판매 내역" />
+
+        <activity
+            android:name=".ShowPostActivity"
+            android:label="상품 보기" />
+
+        <activity
+            android:name=".ShowDetailImageActivity"
+            android:label="이미지 상세보기" />
+
+        <activity android:name=".DibsListActivity"
+            android:label="찜 목록" />
     </application>
 
 </manifest>

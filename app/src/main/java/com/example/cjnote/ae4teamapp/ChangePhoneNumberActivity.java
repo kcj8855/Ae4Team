@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -32,7 +33,6 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
     private TextView usernumber;
     private TextView authnumber;
     private String phonNumber;
-
 
 
     @Override
@@ -67,11 +67,11 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
 
         findViewById(R.id.changeButton).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 String numbercheck = authnumber.getText().toString();
                 if (numbercheck.isEmpty()) {
                     authnumber.setError("Cannot be empty.");
-                } else if (credent.getSmsCode().equals(numbercheck)){
+                } else if (credent.getSmsCode().equals(numbercheck)) {
                     link();
                 } else {
                     authnumber.setError("Disscorrect.");
@@ -79,7 +79,6 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
 
             }
         });
-
 
 
     }
@@ -99,11 +98,9 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
         }
     }
 
-    public void IntentBack () {
-        Intent test3Intent = new Intent(ChangePhoneNumberActivity.this,  SettingActivity.class);
-        startActivity(test3Intent);
+    public void IntentBack() {
         finish();
-        overridePendingTransition(R.anim.leftin_activity,R.anim.rightout_activity);
+        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
     }
 
     private void startPhoneNumberVerification(String phoneNumber) {
@@ -142,8 +139,8 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
         };
     }
 
-    private void link () {
-        if (phoneNumberCheck()==true) {
+    private void link() {
+        if (phoneNumberCheck() == true) {
             mAuth.getCurrentUser().linkWithCredential(credent)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -151,6 +148,7 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "linkWithCredential:success");
                                 Toast.makeText(ChangePhoneNumberActivity.this, "변경되었습니다", Toast.LENGTH_SHORT).show();
+                                IntentBack();
                             } else {
                                 Log.w(TAG, "linkWithCredential:failure", task.getException());
                                 Toast.makeText(ChangePhoneNumberActivity.this, "Authentication failed.",
@@ -165,13 +163,13 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
     }
 
     //번호 끝 8자리구하기
-    private boolean phoneNumberCheck () {
-        if(mAuth.getCurrentUser().getPhoneNumber() != null){
+    private boolean phoneNumberCheck() {
+        if (mAuth.getCurrentUser().getPhoneNumber() != null) {
             return true;
         }
         String currentnumber = mAuth.getCurrentUser().getPhoneNumber();
         String minicurrentNB = currentnumber.substring(3, currentnumber.length());
-        String miniphoneNB = phonNumber.substring(1,phonNumber.length());
+        String miniphoneNB = phonNumber.substring(1, phonNumber.length());
 
         if (minicurrentNB.equals(miniphoneNB)) {
             return false;

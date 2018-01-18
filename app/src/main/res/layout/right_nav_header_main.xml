@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/right_nav_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorProfile"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/com_facebook_profile_picture_blank_square" />
+
+        <TextView
+            android:id="@+id/right_nav_header_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="Android Studio"
+            android:layout_weight="5"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/toSettingActivityImageView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="50dp"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:background="@drawable/setting" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dibsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rightnav_selector"
+            android:text="찜"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/myProductButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rightnav_selector"
+            android:text="내상품"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:text="후기"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/sellButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rightnav_selector"
+            android:drawableLeft="@drawable/camera"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="판매하기"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"/>
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/truck"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="택배신청"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/lightningTalkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="번개톡/알림"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/purchaseHistoryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="구매내역"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/salesHistoryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="판매내역"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/shippingButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="택배발송/수취"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/keywordAlarmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="키워드 알림"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"  />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button_selector"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/dibsButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="#00ff0000"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="찜한상품"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/dibsLL"
+            android:background="@drawable/textviewborder"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button_selector"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/recentViewButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="#00ff0000"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="내 상품"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/myPostLL"
+            android:background="@drawable/textviewborder"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/recomendUserButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="내 추천인 코드"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+</LinearLayout>

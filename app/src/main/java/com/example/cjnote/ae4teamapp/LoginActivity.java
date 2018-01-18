@@ -76,8 +76,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private ProgressDialog dialog;
     private Boolean status = false;
     private final long FINISH_INTERVAL_TIME = 2000;
-    private long   backPressedTime = 0;
-    final Context context = this;
+    private long backPressedTime = 0;
     CarouselView carouselView;
     int[] sampleImages = {R.drawable.sample1, R.drawable.sample2};
 
@@ -88,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         mAuth = FirebaseAuth.getInstance();
 
-        if(mAuth.getCurrentUser() != null) {
+        if (mAuth.getCurrentUser() != null) {
             toMainActivity();
         }
 
@@ -134,18 +133,19 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onClick(View v) {
                 if (mAuth.getCurrentUser() == null) {
                     status = true;
-//                    dialog.show();
+                    dialog.show();
                 }
                 googleSignIn();
             }
         });
 
         mCallbackManager = CallbackManager.Factory.create();
-        LoginButton facebookBtn= (LoginButton) findViewById(R.id.facebookButton);
+        LoginButton facebookBtn = (LoginButton) findViewById(R.id.facebookButton);
         facebookBtn.setReadPermissions("email", "public_profile");
         facebookBtn.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                dialog.show();
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
@@ -167,51 +167,30 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         githubBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dialog.show();
                 githubSignIn();
             }
         });
-
-
-//        mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                updateUI();
-//                writeUserInfo();
-//            }
-//        });
-
     }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
 
         if (intent != null) {
-
             String code = intent.getStringExtra("code");
             String state = intent.getStringExtra("state");
 
             if (code != null && state != null) {
-
-                Log.d("RedirectedActivity", "code != null && state != null");
-
                 // POST https://github.com/login/oauth/access_token
                 sendPost(code, state);
             }
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("requestCode", ""+requestCode);
-//        if(data == null){
-//            startActivity(new Intent(this, RedirectedActivity.class));
-//            Log.d("requestCode", "NULL!!!"+requestCode);
-//            return;
-//
-//        }
-//        Cursor cursor= getContentResolver()
-//                .query(data.getData(),null , null, null, null);
-//        Log.d("requestCode", ""+cursor.getColumnNames().toString());
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_GOOGLE_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -223,29 +202,28 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 // Google Sign In failed, update UI appropriately
                 // ...
             }
-        } else if(requestCode == RC_FACEBOOK_SIGN_IN) {
+        } else if (requestCode == RC_FACEBOOK_SIGN_IN) {
             // Pass the activity result back to the Facebook SDK
             mCallbackManager.onActivityResult(requestCode, resultCode, data);
         }
 
 
     }
+
     @Override
     public void onBackPressed() {
         long tempTime = System.currentTimeMillis();
         long intervalTime = tempTime - backPressedTime;
 
-        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
-        {
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
             super.onBackPressed();
-        }
-        else
-        {
+        } else {
             backPressedTime = tempTime;
             Toast.makeText(getApplicationContext(), "뒤로가기 버튼을 한번더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
 
     }
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         dialog.dismiss();
@@ -260,16 +238,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
     }
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            writeUserInfo();
+                            getUserInfo();
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
@@ -281,55 +258,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     // Facebook Login
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
-
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-
-                            Map<String, Object> userMap = new HashMap<>();
-
-                            userMap.put("email", user.getEmail());
-                            userMap.put("nickname", user.getDisplayName());
-                            userColRef.document(user.getUid())
-                                    .set(userMap)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            writeUserInfo();
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Log.w(TAG, "Error writing document", e);
-                                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                            mAuth.getCurrentUser().delete()
-                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                            if (task.isSuccessful()) {
-                                                                Log.d(TAG, "User account deleted.");
-                                                            }
-                                                        }
-                                                    });
-                                        }
-                                    })
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            dialog.dismiss();
-                                        }
-                                    });
+                            getUserInfo();
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -349,19 +286,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .addPathSegment("authorize")
                 .addQueryParameter("client_id", getString(R.string.github_client_id))
                 .addQueryParameter("redirect_uri", getString(R.string.github_redirect_url))
-                .addQueryParameter("state","chanjoong" )//UUID.randomUUID().toString()
+                .addQueryParameter("state", "chanjoong")//UUID.randomUUID().toString()
                 .addQueryParameter("scope", "user:email")
                 .build();
 
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(httpUrl.toString()));
-//        startActivityForResult(intent, MainActivity);
-//        startActivity(new Intent(LoginActivity.this , RedirectedActivity.class));
         startActivityForResult(intent, 2222);
     }
+
     private void sendPost(String code, String state) {
-
-        Log.d("GitHubSignInOutActivity", "sendPost()");
-
         OkHttpClient okHttpClient = new OkHttpClient();
 
         FormBody form = new FormBody.Builder()
@@ -376,7 +309,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .url("https://github.com/login/oauth/access_token")
                 .post(form)
                 .build();
-        Log.d("github request url",request.url().toString());
 
         okHttpClient.newCall(request).enqueue(new Callback() {
 
@@ -389,21 +321,17 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 // e.g. Response form : access_token=e72e16c7e42f292c6912e7710c838347ae178b4a&token_type=bearer
-                Log.d("github signInWithToken",""+response.header("url"));
-
                 String responseBody = response.body().string();
                 String[] splittedBody = responseBody.split("=|&");
 
                 if (splittedBody[0].equalsIgnoreCase("access_token")) {
-
                     signInWithToken(splittedBody[1]);
                 }
             }
         });
     }
-    private void signInWithToken(String token) {
-        Log.d("github signInWithToken",token);
 
+    private void signInWithToken(String token) {
         // credential object from the token
         AuthCredential credential = GithubAuthProvider.getCredential(token);
 
@@ -412,19 +340,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
                         if (task.isSuccessful()) {
+
                             writeUserInfo();
-                            // Success
+                        } else {
+                            Log.d("github signInWithToken", "@3" + task.getException());
                         }
-                    }
-                })
-                .addOnFailureListener(this, new OnFailureListener() {
-
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                        // onFailure
                     }
                 });
     }
@@ -433,29 +354,46 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         user = mAuth.getCurrentUser();
     }
 
-    private void checkUserInfo() {
-        userColRef.document(user.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if(documentSnapshot == null) {
-                    writeUserInfo();
-                }
-            }
-        });
-    }
-    private void writeUserInfo(){
+
+    private void getUserInfo() {
         updateUI();
 
+        userColRef.document(user.getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            Toast.makeText(LoginActivity.this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+                            toMainActivity();
+                            dialog.dismiss();
+                        } else {
+                            writeUserInfo();
+                        }
+                    }
+                });
+    }
+
+    private void writeUserInfo() {
+        updateUI();
         Map<String, Object> userMap = new HashMap<>();
-        if(user == null) return;
-        userMap.put("email", user.getEmail());
-        userMap.put("nickname", user.getDisplayName());
+        if (user == null) return;
+        if (user.getEmail() != null) {
+            userMap.put("email", user.getEmail());
+        } else {
+            userMap.put("email", "temp@email.com");
+        }
+        if (user.getDisplayName() != null) {
+            userMap.put("nickname", user.getDisplayName());
+        } else {
+            userMap.put("nickname", "no nickname");
+        }
+
         userColRef.document(user.getUid())
                 .set(userMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-
                         toMainActivity();
                     }
                 })
@@ -478,10 +416,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-//                        dialog.dismiss();
+                        dialog.dismiss();
                     }
                 });
     }
+
     private void toMainActivity() {
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
         finish();

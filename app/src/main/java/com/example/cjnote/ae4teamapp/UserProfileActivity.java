@@ -52,14 +52,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final int PICK_FROM_ALBUM=0;
-    private static final int PICK_FROM_CAMERA=1;
-    private static final int CROP_FROM_IMAGE=2;
+    private static final int PICK_FROM_ALBUM = 0;
+    private static final int PICK_FROM_CAMERA = 1;
+    private static final int CROP_FROM_IMAGE = 2;
     private Uri mlmageCaptureUri;
     private ImageView iv_UserPhoto;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -83,7 +84,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     private int mDay;
     static final int DATE_DIALOG_ID = 1;
     private TextView calendarView;
-    DatePickerDialog datePickerDialog ;
     private SpannableStringBuilder snssps;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +92,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setElevation(0);
         psa = findViewById(R.id.userProfileFicture);
         womanbutton = findViewById(R.id.womanButton);
         manbutton = findViewById(R.id.manButton);
@@ -106,7 +107,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
-        calendarView = (TextView)findViewById(R.id.birthTextView);
+        calendarView = (TextView) findViewById(R.id.birthTextView);
 
         if ((mAuth.getCurrentUser() != null)) {
             userGenderCheck();
@@ -119,10 +120,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         findViewById(R.id.userContactInfoTextView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent contactinfointent = new Intent(UserProfileActivity.this,  ContactInfoActivity.class);
+                Intent contactinfointent = new Intent(UserProfileActivity.this, ContactInfoActivity.class);
                 startActivity(contactinfointent);
                 finish();
-                overridePendingTransition(R.anim.rightin_activity,R.anim.leftout_activity);
+                overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity);
             }
         });
         findViewById(R.id.womanButton).setOnClickListener(new View.OnClickListener() {
@@ -162,11 +163,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    public void IntentBack () {
-        Intent test3Intent = new Intent(UserProfileActivity.this,  SettingActivity.class);
-        startActivity(test3Intent);
+    public void IntentBack() {
         finish();
-        overridePendingTransition(R.anim.leftin_activity,R.anim.rightout_activity);
+        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
     }
 
     public void changeGenderButton(int index) {
@@ -234,49 +233,48 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Map snap = documentSnapshot.getData();
-//                        Users users = new Users(snap.get("email").toString(), snap.get("nickname").toString());
 
                         //텍스트뷰 세팅
                         nicknameTextView.setText(snap.get("nickname").toString());
 
                         final SpannableStringBuilder contactsps = new SpannableStringBuilder("연락처 정보\n휴대폰 번호, 카톡아이디");
                         contactsps.setSpan(new AbsoluteSizeSpan(45), 0, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        contactsps.setSpan(new ForegroundColorSpan(Color.rgb(160,160,160)), 7, contactsps.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        contactsps.setSpan(new StyleSpan(Typeface.BOLD),0, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        contactsps.setSpan(new ForegroundColorSpan(Color.rgb(160, 160, 160)), 7, contactsps.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        contactsps.setSpan(new StyleSpan(Typeface.BOLD), 0, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         contackTextView.setText(contactsps);
 
-                        if(snap.get("email") != null){
-                            final SpannableStringBuilder emailsps = new SpannableStringBuilder("이메일\n"+snap.get("email").toString());
+                        if (snap.get("email") != null) {
+                            final SpannableStringBuilder emailsps = new SpannableStringBuilder("이메일\n" + snap.get("email").toString());
                             emailsps.setSpan(new AbsoluteSizeSpan(45), 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            emailsps.setSpan(new ForegroundColorSpan(Color.rgb(170,170,170)), 4, emailsps.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            emailsps.setSpan(new StyleSpan(Typeface.BOLD),0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            emailsps.setSpan(new ForegroundColorSpan(Color.rgb(170, 170, 170)), 4, emailsps.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            emailsps.setSpan(new StyleSpan(Typeface.BOLD), 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                             emailTextView.setText(emailsps);
                         }
 
-                        if(mAuth.getCurrentUser().getProviders() != null) {
+                        if (mAuth.getCurrentUser().getProviders() != null) {
                             List snscheck = mAuth.getCurrentUser().getProviders();
 
-                            snssps = new SpannableStringBuilder( "SNS연동\n"+ snscheck.get(0));
+                            snssps = new SpannableStringBuilder("SNS연동\n" + snscheck.get(0));
 
                             snssps.setSpan(new AbsoluteSizeSpan(45), 0, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            snssps.setSpan(new ForegroundColorSpan(Color.rgb(160,160,160)), 5, snssps.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            snssps.setSpan(new StyleSpan(Typeface.BOLD),0, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            snssps.setSpan(new ForegroundColorSpan(Color.rgb(160, 160, 160)), 5, snssps.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            snssps.setSpan(new StyleSpan(Typeface.BOLD), 0, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                             snsTextView.setText(snssps);
                         }
 
-                        if(snap.get("birth")!=null){
+                        if (snap.get("birth") != null) {
                             calendarView.setText("생년월일\n" + snap.get("birth").toString());
                         }
                     }
                 });
     }
 
-    public void psaSetting () {
+    public void psaSetting() {
         islandRef = storageRef.child("user").child(mAuth.getUid()).child("profile.jpg");
         Log.i(TAG, "islanRef: " + islandRef);
         Log.i(TAG, "psaSetting");
         final long ONE_MEGABYTE = 1024 * 1024;
-        Log.i(TAG, "check: "+islandRef.getBytes(ONE_MEGABYTE));
+        Log.i(TAG, "check: " + islandRef.getBytes(ONE_MEGABYTE));
         islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
@@ -285,9 +283,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 try {
                     bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                     psa.setImageBitmap(bitmap);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -331,12 +330,12 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     public void doTakePhotoAction() {
         int permissionCheck = ContextCompat.checkSelfPermission(UserProfileActivity.this, Manifest.permission.CAMERA);
         if (permissionCheck == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(UserProfileActivity.this, new String[]{Manifest.permission.CAMERA},0);
+            ActivityCompat.requestPermissions(UserProfileActivity.this, new String[]{Manifest.permission.CAMERA}, 0);
         } else {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             String url = "profile.jpg";
             mlmageCaptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), url));
-            intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,mlmageCaptureUri);
+            intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, mlmageCaptureUri);
             startActivityForResult(intent, PICK_FROM_CAMERA);
             Log.i(TAG, "test1-camera");
         }
@@ -369,19 +368,17 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         Log.i(TAG, String.valueOf(requestCode));
         Log.i(TAG, String.valueOf(resultCode));
 
-        if(resultCode != RESULT_OK) {
+        if (resultCode != RESULT_OK) {
             return;
         }
 
-        switch(requestCode) {
-            case PICK_FROM_ALBUM:
-            {
+        switch (requestCode) {
+            case PICK_FROM_ALBUM: {
                 mlmageCaptureUri = data.getData();
                 Log.i(TAG, "test2");
             }
 
-            case PICK_FROM_CAMERA:
-            {
+            case PICK_FROM_CAMERA: {
                 Log.i(TAG, "test3");
 
                 Intent intent = new Intent("com.android.camera.action.CROP");
@@ -397,16 +394,15 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 break;
             }
 
-            case CROP_FROM_IMAGE:
-            {
-                if(resultCode != RESULT_OK) {
+            case CROP_FROM_IMAGE: {
+                if (resultCode != RESULT_OK) {
                     return;
                 }
                 Log.i(TAG, "test4");
                 final Bundle extras = data.getExtras();
-                String filePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/temp/"+System.currentTimeMillis()+".jpg";
+                String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp/" + System.currentTimeMillis() + ".jpg";
 
-                if(extras != null) {
+                if (extras != null) {
                     bitmap = extras.getParcelable("data");
                     iv_UserPhoto.setImageBitmap(bitmap);
                     imageUpload();
@@ -416,7 +412,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
                 //임시파일 삭제
                 File f = new File(mlmageCaptureUri.getPath());
-                if(f.exists()) {
+                if (f.exists()) {
                     f.delete();
                 }
                 break;
@@ -443,7 +439,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-    private void imageUpload () {
+    private void imageUpload() {
         Log.i(TAG, "imageupload");
         StorageReference mountainsRef = storageRef.child("user").child(mAuth.getUid()).child("profile.jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -477,6 +473,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         }
         return null;
     }
+
     protected void onPrepareDialog(int id, Dialog dialog) {
         switch (id) {
 
@@ -485,12 +482,14 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 break;
         }
     }
+
     private void updateBirth() {
-        calendarView.setText("생년월일\n" + mYear + "년 " + (mMonth+1) + "월 " + mDay + "일");
+        calendarView.setText("생년월일\n" + mYear + "년 " + (mMonth + 1) + "월 " + mDay + "일");
     }
+
     private void uploadBirth() {
         Map<String, Object> birthMap = new HashMap<>();
-        birthMap.put("birth",mYear + "년 " + (mMonth+1) + "월 " + mDay + "일");
+        birthMap.put("birth", mYear + "년 " + (mMonth + 1) + "월 " + mDay + "일");
         userColRef.document(user.getUid())
                 .update(birthMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -517,7 +516,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                     mDay = dayOfMonth;
                     uploadBirth();
                     updateBirth();
-                    Log.i(TAG, "hi");
                 }
             };
 }

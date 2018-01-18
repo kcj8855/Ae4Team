@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "com.example.cjnote.ae4teamapp"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -60,11 +60,21 @@ dependencies {
     // Using the OkHttp Library for HTTP Networking
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
 
-    // Using the Glide Library for Image loading
-//    compile 'com.github.bumptech.glide:glide:3.7.0'
     // Carousel
     compile 'com.synnapps:carouselview:0.1.4'
+
+    // PhotoView
+    compile 'com.github.chrisbanes.photoview:library:1.2.3'
 }
+
+
+
+
+
+
+
+
+
 
 
 

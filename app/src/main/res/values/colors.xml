@@ -12,4 +12,9 @@
     <color name="textViewHint">#d7d7d7</color>
     <color name="requestButton">#ce452828</color>
     <drawable name="bg_select">#e9eded</drawable>
+    <drawable name="no_select">#ffffff</drawable>
+    <drawable name="main_select">#ef0707</drawable>
+    <color name="select">#c93030</color>
+    <color name="nonselect">#000000</color>
+    <color name="addProductBackground">#e9e7e7</color>
 </resources>

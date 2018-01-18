@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/left_nav_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <TextView
+        android:id="@+id/left_nav_header_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/category_selector"
+        android:padding="5dp"
+        android:text="카테고리"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="20sp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/com_facebook_button_background_color_disabled" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/womanDressButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/reddress"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="여성의류"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+
+        <Button
+            android:id="@+id/manDressButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/pants"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="남성의류"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/fashionAndStuffButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/handbag"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="패션잡화"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/beautyButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/beauty"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="뷰티/미용"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/childAndBirthButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/baby_stroller"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="유아동/출산"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/sportAndLeisureButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/sports"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="스포츠/레저"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/digitalAndHomeButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/television"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="디지털/가전"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/bookButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/ticket"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="도서/티켓/취미/애완"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/lifeButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/drawers"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="생활/문구/가구/식품"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/vehicleButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/car"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="차량/오토바이"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/etcButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/etc"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="기타"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/stargoodsButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/stargoods"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="스타굿즈"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/regionServiceButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/placeholder"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="지역 서비스"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/oneRoomButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/home"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="원룸/함께살아요"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/abilityButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/brain"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="재능"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/communityButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/comunity"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="커뮤니티"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/lightningButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/gift"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="번개나눔"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+        <Button
+            android:id="@+id/eventButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/category_selector"
+            android:drawableLeft="@drawable/event"
+            android:drawablePadding="15dp"
+            android:gravity="top|bottom|left"
+            android:paddingLeft="15dp"
+            android:text="이벤트"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeButton" />
+
+    </LinearLayout>
+
+</LinearLayout>
