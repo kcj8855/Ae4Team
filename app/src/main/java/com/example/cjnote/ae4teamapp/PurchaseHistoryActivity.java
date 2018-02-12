@@ -64,6 +64,16 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
         setImageView();
     }
 
+    @Override
+    public void onBackPressed() {
+        IntentBack();
+    }
+
+    public void IntentBack() {
+        finish();
+        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
+    }
+
 
     public void setImageView() {
         firestore.collection("purchase")
@@ -117,17 +127,6 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                 });
     }
 
-    @Override
-    public void onBackPressed() {
-        IntentBack();
-    }
-
-    public void IntentBack() {
-        finish();
-        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
-    }
-
-
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -137,7 +136,6 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     class MommooAsyncTask extends AsyncTask<String, Void, String> {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
@@ -150,7 +148,6 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(final String... params) {
-            Log.d("AsyncTest", params[0]);
             final long ONE_MEGABYTE = 1024 * 1024;
             storageReference.child("post").child(params[0]).child("photo.jpg")
                     .getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {

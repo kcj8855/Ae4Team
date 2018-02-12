@@ -12,7 +12,6 @@ public class RedirectedActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("requestRedirectActivity", "!!");
 
         // 2. Users are redirected back to your site by GitHub
         Uri uri = getIntent().getData();

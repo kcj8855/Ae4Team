@@ -89,9 +89,21 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
+
+        // 첫번째 숫자 제한
+        InputFilter filter = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                Pattern ps = Pattern.compile("^[1-9]+$");
+                if (!priceET.getText().toString().equals("")) return null;
+                if (!ps.matcher(source).matches()) return "";
+                return null;
+            }
+        };
+
         explanationET = (EditText) findViewById(R.id.explanationEditText);
         priceET = (EditText) findViewById(R.id.priceEditText);
         priceET.setFilters(new InputFilter[]{new InputFilter.LengthFilter(9), filter});
+
     }
 
     @Override
@@ -113,6 +125,8 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         finish();
         overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -153,7 +167,6 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
             mlmageCaptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), url));
             intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, mlmageCaptureUri);
             startActivityForResult(intent, PICK_FROM_CAMERA);
-            Log.i(TAG, "test1-camera");
         }
     }
 
@@ -162,26 +175,20 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
         startActivityForResult(intent, PICK_FROM_ALBUM);
-        Log.i(TAG, "test1-album");
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 0) {
-            if (grantResults[0] == 0) {
-                Toast.makeText(this, "카메라 권한이 승인됨", Toast.LENGTH_SHORT).show();
-            } else {
-                //권한 거절된 경우
-                Toast.makeText(this, "카메라 권한이 거절 되었습니다. 카메라를 이용하려면 권한을 승낙하여야 합니다.", Toast.LENGTH_SHORT).show();
-            }
+            String message = (grantResults[0] == 0) ? "카메라 권한이 승인됨" : "카메라 권한이 거절 되었습니다. 카메라를 이용하려면 권한을 승낙하여야 합니다.";
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.i(TAG, String.valueOf(requestCode));
-        Log.i(TAG, String.valueOf(resultCode));
 
         if (resultCode != RESULT_OK) {
             return;
@@ -190,11 +197,9 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         switch (requestCode) {
             case PICK_FROM_ALBUM: {
                 mlmageCaptureUri = data.getData();
-                Log.i(TAG, "test2");
             }
 
             case PICK_FROM_CAMERA: {
-                Log.i(TAG, "test3");
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mlmageCaptureUri);
                     iv_UserPhoto.setImageBitmap(bitmap);
@@ -212,12 +217,8 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void imageUpload(final String documentReference) {
-        Log.i(TAG, "imageupload");
-
-
         StorageReference mountainsRef = storageRef.child("post").child(documentReference).child("photo.jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Log.i(TAG, baos.toString());
         bitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth() / 6, bitmap.getHeight() / 6, true);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
@@ -238,7 +239,6 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
                 dialog.dismiss();
                 Toast.makeText(AddProductActivity.this, "업로드 되었습니다", Toast.LENGTH_SHORT).show();
                 finish();
-                Log.d(TAG, String.valueOf(downloadUrl));
             }
         });
     }
@@ -261,6 +261,7 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
             Toast.makeText(this, "가격을 입력해주세요", Toast.LENGTH_SHORT).show();
             return;
         }
+
         dialog.show();
         Map<String, Object> data = new HashMap<>();
         data.put("title", productName_ET.getText().toString());
@@ -326,17 +327,5 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    // 첫번째 숫자 제한
-    InputFilter filter = new InputFilter() {
-        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-            Pattern ps = Pattern.compile("^[1-9]+$");
-
-            if (!priceET.getText().toString().equals("")) return null;
-
-            if (!ps.matcher(source).matches()) return "";
-
-            return null;
-        }
-    };
 
 }

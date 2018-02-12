@@ -46,7 +46,7 @@ public class FragmentFour extends android.support.v4.app.Fragment {
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
     LinearLayout contentLL4;
-    Map<String, ImageView> temp;
+    Map<String, ImageView> temp = new HashMap<>();
     LinearLayout postView;
     LinearLayout LL;
     TextView titleTV;
@@ -58,10 +58,11 @@ public class FragmentFour extends android.support.v4.app.Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_four, container, false);
-        temp = new HashMap<>();
 
         contentLL4 = (LinearLayout) v.findViewById(R.id.contentLL4);
+
         setImageView();
+
         return v;
     }
 
@@ -97,17 +98,16 @@ public class FragmentFour extends android.support.v4.app.Fragment {
 
                                     NumberFormat nf = NumberFormat.getInstance();
 
-
                                     LinearLayout.LayoutParams priceLp = new LinearLayout.LayoutParams(300, 50);
                                     priceLp.setMargins(10, 0, 10, 10);
                                     priceTV.setLayoutParams(priceLp);
                                     String strTitle = document.getData().get("title").toString();
                                     String strPrice = nf.format(document.getData().get("price"));
 
+                                    // 글 제목
                                     titleSps = new SpannableStringBuilder(strTitle.replace(" ", "\u00A0"));
                                     titleSps.setSpan(new AbsoluteSizeSpan(33), 0, titleSps.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                                     titleSps.setSpan(new ForegroundColorSpan(Color.rgb(30, 30, 30)), 0, titleSps.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
                                     if (document.getData().get("userId").equals(mAuth.getCurrentUser().getUid())) {
                                         strTitle = "[내 상품] " + document.getData().get("title").toString();
                                         titleSps = new SpannableStringBuilder(strTitle.replace(" ", "\u00A0"));
@@ -116,6 +116,7 @@ public class FragmentFour extends android.support.v4.app.Fragment {
                                         titleSps.setSpan(new ForegroundColorSpan(Color.rgb(30, 30, 30)), 6, titleSps.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                                     }
 
+                                    // 가격 Format
                                     priceSps = new SpannableStringBuilder(strPrice + "원");
                                     priceSps.setSpan(new ForegroundColorSpan(Color.rgb(255, 0, 0)), 0, priceSps.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -127,10 +128,12 @@ public class FragmentFour extends android.support.v4.app.Fragment {
                                     titleTV.setMaxLines(2);
                                     titleTV.setEllipsize(TextUtils.TruncateAt.END);
 
-                                    temp.put("postimageView" + count, new ImageView(getActivity()));
-                                    temp.get("postimageView" + count).setMinimumHeight(300);
-                                    temp.get("postimageView" + count).setMinimumWidth(300);
-                                    temp.get("postimageView" + count).setBackground(drawable2);
+                                    // ImageView 를 HashMap에 저장 (AsyncTask로 이미지를 가져와 넣어주기위함)
+                                    String tempKey = "postimageView" + count;
+                                    temp.put(tempKey, new ImageView(getActivity()));
+                                    temp.get(tempKey).setMinimumHeight(300);
+                                    temp.get(tempKey).setMinimumWidth(300);
+                                    temp.get(tempKey).setBackground(drawable2);
 
                                     drawable2 = getResources().getDrawable(R.drawable.postview_border);
                                     postView = new LinearLayout(getActivity());

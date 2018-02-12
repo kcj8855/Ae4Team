@@ -144,13 +144,16 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 showDialog(DATE_DIALOG_ID);
             }
         });
-
-
     }
 
     @Override
     public void onBackPressed() {
         IntentBack();
+    }
+
+    public void IntentBack() {
+        finish();
+        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -163,13 +166,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    public void IntentBack() {
-        finish();
-        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
-    }
-
     public void changeGenderButton(int index) {
-
         Map<String, Object> userMap = new HashMap<>();
         switch (index) {
             case R.id.womanButton:
@@ -337,7 +334,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
             mlmageCaptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), url));
             intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, mlmageCaptureUri);
             startActivityForResult(intent, PICK_FROM_CAMERA);
-            Log.i(TAG, "test1-camera");
         }
     }
 
@@ -346,27 +342,19 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
         startActivityForResult(intent, PICK_FROM_ALBUM);
-        Log.i(TAG, "test1-album");
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 0) {
-            if (grantResults[0] == 0) {
-                Toast.makeText(this, "카메라 권한이 승인됨", Toast.LENGTH_SHORT).show();
-            } else {
-                //권한 거절된 경우
-                Toast.makeText(this, "카메라 권한이 거절 되었습니다. 카메라를 이용하려면 권한을 승낙하여야 합니다.", Toast.LENGTH_SHORT).show();
-            }
+            String message = (grantResults[0] == 0) ? "카메라 권한이 승인됨" : "카메라 권한이 거절 되었습니다. 카메라를 이용하려면 권한을 승낙하여야 합니다.";
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.i(TAG, String.valueOf(requestCode));
-        Log.i(TAG, String.valueOf(resultCode));
 
         if (resultCode != RESULT_OK) {
             return;
@@ -375,12 +363,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         switch (requestCode) {
             case PICK_FROM_ALBUM: {
                 mlmageCaptureUri = data.getData();
-                Log.i(TAG, "test2");
             }
 
             case PICK_FROM_CAMERA: {
-                Log.i(TAG, "test3");
-
                 Intent intent = new Intent("com.android.camera.action.CROP");
                 intent.setDataAndType(mlmageCaptureUri, "image/*");
 
@@ -398,12 +383,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 if (resultCode != RESULT_OK) {
                     return;
                 }
-                Log.i(TAG, "test4");
                 final Bundle extras = data.getExtras();
                 String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp/" + System.currentTimeMillis() + ".jpg";
 
                 if (extras != null) {
-                    bitmap = extras.getParcelable("data");
                     iv_UserPhoto.setImageBitmap(bitmap);
                     imageUpload();
                     storeCropImage(bitmap, filePath);
@@ -423,13 +406,11 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     private void storeCropImage(Bitmap bitmap, String filePath) {
         File copyFile = new File(filePath);
         BufferedOutputStream out = null;
-        Log.i(TAG, "test5");
 
         try {
             copyFile.createNewFile();
             out = new BufferedOutputStream(new FileOutputStream(copyFile));
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-            Log.i(TAG, "test6");
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(copyFile)));
             out.flush();
             out.close();
@@ -440,7 +421,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void imageUpload() {
-        Log.i(TAG, "imageupload");
         StorageReference mountainsRef = storageRef.child("user").child(mAuth.getUid()).child("profile.jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -464,6 +444,18 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     protected Dialog onCreateDialog(int id) {
+        DatePickerDialog.OnDateSetListener mDateSetListener =
+                new DatePickerDialog.OnDateSetListener() {
+
+                    public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                          int dayOfMonth) {
+                        mYear = year;
+                        mMonth = monthOfYear;
+                        mDay = dayOfMonth;
+                        uploadBirth();
+                        updateBirth();
+                    }
+                };
         switch (id) {
 
             case DATE_DIALOG_ID:
@@ -506,18 +498,6 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 });
     }
 
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
-
-                public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                      int dayOfMonth) {
-                    mYear = year;
-                    mMonth = monthOfYear;
-                    mDay = dayOfMonth;
-                    uploadBirth();
-                    updateBirth();
-                }
-            };
 }
 
 

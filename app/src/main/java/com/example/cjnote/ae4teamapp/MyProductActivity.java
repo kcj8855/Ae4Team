@@ -65,8 +65,18 @@ public class MyProductActivity extends AppCompatActivity {
         setImageView();
     }
 
+    @Override
+    public void onBackPressed() {
+        IntentBack();
+    }
+
+    public void IntentBack() {
+        finish();
+        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
+    }
+
+
     public void setImageView() {
-        Log.i(TAG, "IV");
         postColRef
                 .whereEqualTo("userId", userId)
                 .get()
@@ -94,7 +104,6 @@ public class MyProductActivity extends AppCompatActivity {
 
                                 textView = new TextView(MyProductActivity.this);
                                 textView.setText(document.getData().get("title").toString());
-
 
                                 postImageView.put(tempId, new ImageView(MyProductActivity.this));
                                 postImageView.get(tempId).setMinimumHeight(300);
@@ -129,17 +138,6 @@ public class MyProductActivity extends AppCompatActivity {
                 });
     }
 
-    @Override
-    public void onBackPressed() {
-        IntentBack();
-    }
-
-    public void IntentBack() {
-        finish();
-        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
-    }
-
-
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -149,7 +147,6 @@ public class MyProductActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     class MommooAsyncTask extends AsyncTask<String, Void, String> {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();

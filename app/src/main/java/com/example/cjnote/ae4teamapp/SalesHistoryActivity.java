@@ -64,6 +64,16 @@ public class SalesHistoryActivity extends AppCompatActivity {
         setImageView();
     }
 
+    @Override
+    public void onBackPressed() {
+        IntentBack();
+    }
+
+    public void IntentBack() {
+        finish();
+        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
+    }
+
     public void setImageView() {
         firestore.collection("purchase")
                 .whereEqualTo("userId", userId)
@@ -114,17 +124,6 @@ public class SalesHistoryActivity extends AppCompatActivity {
 
                 });
     }
-
-    @Override
-    public void onBackPressed() {
-        IntentBack();
-    }
-
-    public void IntentBack() {
-        finish();
-        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
-    }
-
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

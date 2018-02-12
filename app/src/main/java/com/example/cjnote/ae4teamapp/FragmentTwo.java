@@ -128,10 +128,12 @@ public class FragmentTwo extends android.support.v4.app.Fragment {
                                     titleTV.setMaxLines(2);
                                     titleTV.setEllipsize(TextUtils.TruncateAt.END);
 
-                                    temp.put("postimageView" + count, new ImageView(getActivity()));
-                                    temp.get("postimageView" + count).setMinimumHeight(300);
-                                    temp.get("postimageView" + count).setMinimumWidth(300);
-                                    temp.get("postimageView" + count).setBackground(drawable2);
+                                    // ImageView 를 HashMap에 저장 (AsyncTask로 이미지를 가져와 넣어주기위함)
+                                    String tempKey = "postimageView" + count;
+                                    temp.put(tempKey, new ImageView(getActivity()));
+                                    temp.get(tempKey).setMinimumHeight(300);
+                                    temp.get(tempKey).setMinimumWidth(300);
+                                    temp.get(tempKey).setBackground(drawable2);
 
                                     drawable2 = getResources().getDrawable(R.drawable.postview_border);
                                     postView = new LinearLayout(getActivity());

@@ -48,7 +48,7 @@ public class FragmentOne extends android.support.v4.app.Fragment {
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
     LinearLayout contentLL1;
-    Map<String, ImageView> temp;
+    Map<String, ImageView> temp = new HashMap<>();
     LinearLayout postView;
     LinearLayout LL;
     TextView titleTV;
@@ -59,7 +59,6 @@ public class FragmentOne extends android.support.v4.app.Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_one, container, false);
-        temp = new HashMap<>();
 
         contentLL1 = (LinearLayout) v.findViewById(R.id.contentLL1);
         setImageView();
@@ -128,10 +127,12 @@ public class FragmentOne extends android.support.v4.app.Fragment {
                                     titleTV.setMaxLines(2);
                                     titleTV.setEllipsize(TextUtils.TruncateAt.END);
 
-                                    temp.put("postimageView" + count, new ImageView(getActivity()));
-                                    temp.get("postimageView" + count).setMinimumHeight(300);
-                                    temp.get("postimageView" + count).setMinimumWidth(300);
-                                    temp.get("postimageView" + count).setBackground(drawable2);
+                                    // ImageView 를 HashMap에 저장 (AsyncTask로 이미지를 가져와 넣어주기위함)
+                                    String tempKey = "postimageView" + count;
+                                    temp.put(tempKey, new ImageView(getActivity()));
+                                    temp.get(tempKey).setMinimumHeight(300);
+                                    temp.get(tempKey).setMinimumWidth(300);
+                                    temp.get(tempKey).setBackground(drawable2);
 
                                     drawable2 = getResources().getDrawable(R.drawable.postview_border);
                                     postView = new LinearLayout(getActivity());

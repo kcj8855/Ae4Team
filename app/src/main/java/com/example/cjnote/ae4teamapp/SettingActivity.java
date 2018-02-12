@@ -31,32 +31,18 @@ public class SettingActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        // 유저 세션 없을시 로그인화면으로
+        if (mAuth.getCurrentUser() == null) {
+            Intent loginintent = new Intent(SettingActivity.this, LoginActivity.class);
+            startActivity(loginintent);
+            finish();
+        }
+
         changeNumberBtn = (Button) findViewById(R.id.changeNumberButton);
 
         if (mAuth.getCurrentUser().getPhoneNumber() != null) {
             phoneNBSetting();
         }
-
-        findViewById(R.id.storeIntroButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        findViewById(R.id.storeSelectButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        findViewById(R.id.storeRegisterButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         findViewById(R.id.userProfileButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +59,6 @@ public class SettingActivity extends AppCompatActivity {
                 Intent changenumberIntent = new Intent(SettingActivity.this, ChangePhoneNumberActivity.class);
                 startActivity(changenumberIntent);
                 overridePendingTransition(R.anim.rightin_activity, R.anim.leftout_activity);
-
             }
         });
 
@@ -84,44 +69,16 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.thunderScreenButon).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        findViewById(R.id.noticeButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        findViewById(R.id.addServiceButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        findViewById(R.id.withdrawalButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        if (mAuth.getCurrentUser() == null) {
-            Intent loginintent = new Intent(SettingActivity.this, LoginActivity.class);
-            startActivity(loginintent);
-            finish();
-        }
     }
 
     @Override
     public void onBackPressed() {
         IntentBack();
+    }
+
+    public void IntentBack() {
+        finish();
+        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -134,10 +91,6 @@ public class SettingActivity extends AppCompatActivity {
         }
     }
 
-    public void IntentBack() {
-        finish();
-        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
-    }
 
     public void phoneNBSetting() {
         String userNB = mAuth.getCurrentUser().getPhoneNumber();
@@ -148,27 +101,26 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public void logoutClick() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        signOut();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setTitle("로그아웃");
         alertDialogBuilder.setMessage("로그아웃 시 30일 이상 경과된 번개톡 대화내용은 모두 삭제됩니다.\n\n로그아웃 하시겠습니까?");
         alertDialogBuilder.setPositiveButton("확인", dialogClickListener).setNegativeButton("취소", dialogClickListener).show();
     }
-
-    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            switch (which) {
-                case DialogInterface.BUTTON_POSITIVE:
-                    //Yes button clicked
-                    signOut();
-                    break;
-
-                case DialogInterface.BUTTON_NEGATIVE:
-                    //No button clicked
-                    break;
-            }
-        }
-    };
 
     private void signOut() {
         mAuth.signOut();

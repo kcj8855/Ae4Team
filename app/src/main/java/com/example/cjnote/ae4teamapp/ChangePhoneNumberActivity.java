@@ -1,6 +1,5 @@
 package com.example.cjnote.ae4teamapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -28,7 +27,6 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
     private String TAG = "changeNumber Activity";
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private PhoneAuthCredential credent;
-    private boolean mVerificationInProgress = false;
     private FirebaseAuth mAuth;
     private TextView usernumber;
     private TextView authnumber;
@@ -47,7 +45,6 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
         usernumber = findViewById(R.id.phonNumberTextView);
         authnumber = findViewById(R.id.authorizationNumberTextView);
 
-        Log.i(TAG, "number:" + mAuth.getCurrentUser().getPhoneNumber());
         phoneNumberVerificationCB();
 
         findViewById(R.id.requestButton).setOnClickListener(new View.OnClickListener() {
@@ -103,6 +100,8 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
     }
 
+
+
     private void startPhoneNumberVerification(String phoneNumber) {
         // [START start_phone_auth]
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
@@ -112,7 +111,6 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
                 this,               // Activity (for callback binding)
                 mCallbacks);        // OnVerificationStateChangedCallbacks
         // [END start_phone_auth]
-        mVerificationInProgress = true;
     }
 
     private void phoneNumberVerificationCB() {
@@ -120,7 +118,6 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
 
             @Override
             public void onVerificationCompleted(PhoneAuthCredential credential) {
-                Log.d(TAG, "onVerificationCompleted:" + credential);
                 credent = credential;
             }
 
@@ -151,8 +148,7 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
                                 IntentBack();
                             } else {
                                 Log.w(TAG, "linkWithCredential:failure", task.getException());
-                                Toast.makeText(ChangePhoneNumberActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ChangePhoneNumberActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                             // ...
                         }
@@ -162,7 +158,8 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
         }
     }
 
-    //번호 끝 8자리구하기
+
+    // 변경할 번호와 기존번호가 같은지 체크
     private boolean phoneNumberCheck() {
         if (mAuth.getCurrentUser().getPhoneNumber() != null) {
             return true;
@@ -171,9 +168,6 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
         String minicurrentNB = currentnumber.substring(3, currentnumber.length());
         String miniphoneNB = phonNumber.substring(1, phonNumber.length());
 
-        if (minicurrentNB.equals(miniphoneNB)) {
-            return false;
-        }
-        return true;
+        return (minicurrentNB.equals(miniphoneNB)) ? false : true;
     }
 }

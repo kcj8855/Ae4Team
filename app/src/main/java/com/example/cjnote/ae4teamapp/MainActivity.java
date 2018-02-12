@@ -58,24 +58,6 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = "MainTest";
     private final long FINSH_INTERVAL_TIME = 2000;
     private long backPressedTime = 0;
-    Button womanDressButton;
-    Button manDressButton;
-    Button fashionAndStuffButton;
-    Button beautyButton;
-    Button childAndBirthButton;
-    Button sportAndLeisureButton;
-    Button digitalAndHomeButton;
-    Button bookButton;
-    Button lifeButton;
-    Button vehicleButton;
-    Button etcButton;
-    Button stargoodsButton;
-    Button regionServiceButton;
-    Button oneRoomButton;
-    Button abilityButton;
-    Button communityButton;
-    Button lightningButton;
-    Button eventButton;
     private FirebaseStorage storage;
     private FirebaseFirestore firestore;
     private StorageReference storageRef;
@@ -89,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
     List<String> dibs;
     private SectionsPagerAdapter mSectionsPagerAdater;
     private ViewPager mViewPager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,141 +203,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        womanDressButton = (Button) leftNavHeader.findViewById(R.id.womanDressButton);
-        manDressButton = (Button) leftNavHeader.findViewById(R.id.manDressButton);
-        fashionAndStuffButton = (Button) leftNavHeader.findViewById(R.id.fashionAndStuffButton);
-        beautyButton = (Button) leftNavHeader.findViewById(R.id.beautyButton);
-        childAndBirthButton = (Button) leftNavHeader.findViewById(R.id.childAndBirthButton);
-        sportAndLeisureButton = (Button) leftNavHeader.findViewById(R.id.sportAndLeisureButton);
-        digitalAndHomeButton = (Button) leftNavHeader.findViewById(R.id.digitalAndHomeButton);
-        bookButton = (Button) leftNavHeader.findViewById(R.id.bookButton);
-        lifeButton = (Button) leftNavHeader.findViewById(R.id.lifeButton);
-        vehicleButton = (Button) leftNavHeader.findViewById(R.id.vehicleButton);
-        etcButton = (Button) leftNavHeader.findViewById(R.id.etcButton);
-        stargoodsButton = (Button) leftNavHeader.findViewById(R.id.stargoodsButton);
-        regionServiceButton = (Button) leftNavHeader.findViewById(R.id.regionServiceButton);
-        oneRoomButton = (Button) leftNavHeader.findViewById(R.id.oneRoomButton);
-        abilityButton = (Button) leftNavHeader.findViewById(R.id.abilityButton);
-        communityButton = (Button) leftNavHeader.findViewById(R.id.communityButton);
-        lightningButton = (Button) leftNavHeader.findViewById(R.id.lightningButton);
-        eventButton = (Button) leftNavHeader.findViewById(R.id.eventButton);
-        womanDressButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, womanDressButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        manDressButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, manDressButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        fashionAndStuffButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, fashionAndStuffButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        beautyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, beautyButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        childAndBirthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, childAndBirthButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        sportAndLeisureButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, sportAndLeisureButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        digitalAndHomeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, digitalAndHomeButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        bookButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, bookButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        lifeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, lifeButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        vehicleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, vehicleButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        etcButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, etcButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        stargoodsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, stargoodsButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        regionServiceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, regionServiceButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        oneRoomButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, oneRoomButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        abilityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, abilityButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        communityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, communityButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        lightningButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, lightningButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-        eventButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, eventButton.getText() + "버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (mAuth.getCurrentUser() == null) {
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-        }
     }
 
     @Override
@@ -380,6 +226,15 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "'뒤로'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mAuth.getCurrentUser() == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
     }
 
     @Override
@@ -424,70 +279,6 @@ public class MainActivity extends AppCompatActivity {
                 // Handle any errors
             }
         });
-    }
-
-    class MommooAsyncTask extends AsyncTask<String, Void, Void> {
-        Bitmap resize;
-        Bitmap bitmap;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(final String... params) {
-            final long ONE_MEGABYTE = 1024 * 1024 * 10;
-            StorageReference islandRef = storageRef.child("post").child(params[0]).child("photo.jpg");
-            islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                @Override
-                public void onSuccess(byte[] bytes) {
-                    // Data for "images/island.jpg" is returns, use this as needed
-                    bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    resize = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
-                    temp.get(params[0]).setImageBitmap(resize);
-                }
-            });
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
-
-    }
-
-    class GetMyPostAsyncTask extends AsyncTask<String, Void, Void> {
-        Bitmap resize;
-        Bitmap bitmap;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(final String... params) {
-            final long ONE_MEGABYTE = 1024 * 1024 * 10;
-            StorageReference islandRef = storageRef.child("post").child(params[0]).child("photo.jpg");
-            islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                @Override
-                public void onSuccess(byte[] bytes) {
-                    // Data for "images/island.jpg" is returns, use this as needed
-                    bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    resize = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
-                    myProductImageMap.get(params[0]).setImageBitmap(resize);
-                }
-            });
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
-
     }
 
     public void setDibsImageView() {
@@ -580,6 +371,70 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    class MommooAsyncTask extends AsyncTask<String, Void, Void> {
+        Bitmap resize;
+        Bitmap bitmap;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(final String... params) {
+            final long ONE_MEGABYTE = 1024 * 1024 * 10;
+            StorageReference islandRef = storageRef.child("post").child(params[0]).child("photo.jpg");
+            islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    // Data for "images/island.jpg" is returns, use this as needed
+                    bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    resize = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+                    temp.get(params[0]).setImageBitmap(resize);
+                }
+            });
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+    }
+
+    class GetMyPostAsyncTask extends AsyncTask<String, Void, Void> {
+        Bitmap resize;
+        Bitmap bitmap;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(final String... params) {
+            final long ONE_MEGABYTE = 1024 * 1024 * 10;
+            StorageReference islandRef = storageRef.child("post").child(params[0]).child("photo.jpg");
+            islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    // Data for "images/island.jpg" is returns, use this as needed
+                    bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    resize = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+                    myProductImageMap.get(params[0]).setImageBitmap(resize);
+                }
+            });
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

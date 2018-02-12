@@ -63,7 +63,26 @@ public class DibsListActivity extends AppCompatActivity {
 
         setImageView();
 
+    }
 
+    @Override
+    public void onBackPressed() {
+        IntentBack();
+    }
+
+    public void IntentBack() {
+        finish();
+        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                IntentBack();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 
@@ -118,28 +137,6 @@ public class DibsListActivity extends AppCompatActivity {
 
                 });
     }
-
-    @Override
-    public void onBackPressed() {
-        IntentBack();
-    }
-
-    public void IntentBack() {
-        finish();
-        overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
-    }
-
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                IntentBack();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
 
     class MommooAsyncTask extends AsyncTask<String, Void, String> {
 

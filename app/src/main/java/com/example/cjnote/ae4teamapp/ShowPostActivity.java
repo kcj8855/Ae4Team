@@ -223,16 +223,6 @@ public class ShowPostActivity extends AppCompatActivity {
         setPost();
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                IntentBack();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
     @Override
     public void onBackPressed() {
         IntentBack();
@@ -243,9 +233,17 @@ public class ShowPostActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.leftin_activity, R.anim.rightout_activity);
     }
 
-    private void setPost() {
-//        String price = String.format("%,s", postData.get("price"));
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                IntentBack();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
+    private void setPost() {
         titleTV.setText("" + postData.get("title"));
         priceTV.setText(new java.text.DecimalFormat("#,###").format(Integer.parseInt(postData.get("price").toString())) + "원");
         contentTV.setText("" + postData.get("content"));
@@ -253,20 +251,21 @@ public class ShowPostActivity extends AppCompatActivity {
         long time = new Date().getTime() - (long) postData.get("timestamp");
         Log.d("timetest", postData.get("timestamp").toString() + " " + new Date().getTime());
         time /= 1000;
+        String str;
         if (time < 60) {
-            postInfoTV.setText(time + "초 전");
-
+            str = time + "초 전";
         } else if (time >= 60 && time < 3600) {
-            postInfoTV.setText(time / 60 + "분 전");
+            str = time / 60 + "분 전";
         } else if (time >= 3600 && time < 86400) {
-            postInfoTV.setText(time / 3600 + "시간 전");
-
+            str = time / 3600 + "시간 전";
+        } else {
+            str = time / 86400 + "일 전";
         }
+        postInfoTV.setText(str);
 
         MommooAsyncTask asyncTask = new MommooAsyncTask();
         asyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, postId);
     }
-
 
     class MommooAsyncTask extends AsyncTask<String, Void, String> {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
