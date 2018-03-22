@@ -248,13 +248,12 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         EditText price_ET = (EditText) findViewById(R.id.priceEditText);
         TextView category_TV = (TextView) findViewById(R.id.categorySelectTextView);
 
-
-        if (productName_ET.getText().toString().length() == 0) {
-            Toast.makeText(this, "제목을 입력해주세요", Toast.LENGTH_SHORT).show();
-            return;
-        }
         if (bitmap == null) {
             Toast.makeText(this, "사진을 등록해주세요", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (productName_ET.getText().toString().length() == 0) {
+            Toast.makeText(this, "제목을 입력해주세요", Toast.LENGTH_SHORT).show();
             return;
         }
         if (price_ET.getText().toString().length() == 0) {

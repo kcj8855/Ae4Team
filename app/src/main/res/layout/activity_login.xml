@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.cjnote.ae4teamapp.LoginActivity">
+
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselView"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
         app:slideInterval="5000"
         app:strokeColor="#FF777777"
         app:strokeWidth="1dp">
+
     </com.synnapps.carouselview.CarouselView>
 
     <com.google.android.gms.common.SignInButton
@@ -23,19 +25,18 @@
         android:layout_height="41dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735">
+        app:layout_constraintVertical_bias="0.63">
 
     </com.google.android.gms.common.SignInButton>
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/facebookButton"
         android:layout_width="326dp"
-        android:layout_height="31dp"
+        android:layout_height="38dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -52,10 +53,24 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:background="@color/common_google_signin_btn_text_dark_focused"
-        android:text="Github Sign in"
+        android:textAllCaps="false"
+        android:text="Sign in with Github"
         android:textColor="@color/cardview_light_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/facebookButton" />
+
+    <Button
+        android:id="@+id/AnonymousButton"
+        android:layout_width="320dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:background="#e23505"
+        android:textAllCaps="false"
+        android:text="Sign in Anonymously"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/githubButton" />
 
 </android.support.constraint.ConstraintLayout>

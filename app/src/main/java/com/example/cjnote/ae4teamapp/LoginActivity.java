@@ -163,6 +163,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 githubSignIn();
             }
         });
+
+        Button AnonymousBtn = (Button) findViewById(R.id.AnonymousButton);
+        AnonymousBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
+                AnonymousSignIn();
+            }
+        });
     }
 
     @Override
@@ -421,4 +430,25 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         finish();
     }
 
+    //Anonymous
+    public void AnonymousSignIn() {
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInAnonymously:success");
+                            getUserInfo();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInAnonymously:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
+                    }
+                });
+    }
 }

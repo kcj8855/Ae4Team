@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
         rightNavHeaderNicknameTV = (TextView) rightNavHeader.findViewById(R.id.right_nav_header_nickname);
         if (user.getDisplayName() == null) {
             rightNavHeaderNicknameTV.setText("no nickname");
+        } else if (user.getProviders().size() == 0) {
+            rightNavHeaderNicknameTV.setText("no nickname");
         } else {
             rightNavHeaderNicknameTV.setText(user.getDisplayName());
         }
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        if ((mAuth.getCurrentUser() != null)) {
+        if (mAuth.getCurrentUser() != null) {
             psaSetting();
             setDibsImageView();
             setMyProductImageView();

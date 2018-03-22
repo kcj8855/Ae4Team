@@ -46,18 +46,23 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
         authnumber = findViewById(R.id.authorizationNumberTextView);
 
         phoneNumberVerificationCB();
-
+        Log.i("numbercheck", "changenumber");
         findViewById(R.id.requestButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 phonNumber = usernumber.getText().toString();
-                phoneNumberCheck();
-
-                if (TextUtils.isEmpty(phonNumber)) {
-                    usernumber.setError("Cannot be empty.");
+                if(mAuth.getCurrentUser().getProviders().size() != 0) {
+                    if (TextUtils.isEmpty(phonNumber)) {
+                        usernumber.setError("Cannot be empty.");
+                    } else {
+                        phoneNumberCheck();
+                        startPhoneNumberVerification(phonNumber);
+                    }
                 } else {
-                    startPhoneNumberVerification(phonNumber);
+                    Toast.makeText(ChangePhoneNumberActivity.this, "회원가입을 해주세요", Toast.LENGTH_SHORT).show();
                 }
+
+
 
             }
         });
@@ -66,12 +71,18 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String numbercheck = authnumber.getText().toString();
-                if (numbercheck.isEmpty()) {
-                    authnumber.setError("Cannot be empty.");
-                } else if (credent.getSmsCode().equals(numbercheck)) {
-                    link();
+
+
+                if (credent != null) {
+                    if (numbercheck.isEmpty()) {
+                        authnumber.setError("Cannot be empty.");
+                    } else if (credent.getSmsCode().equals(numbercheck)) {
+                        link();
+                    } else {
+                        authnumber.setError("Disscorrect.");
+                    }
                 } else {
-                    authnumber.setError("Disscorrect.");
+                    Toast.makeText(ChangePhoneNumberActivity.this, "인증번호를 발송해주세요", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -161,13 +172,15 @@ public class ChangePhoneNumberActivity extends AppCompatActivity {
 
     // 변경할 번호와 기존번호가 같은지 체크
     private boolean phoneNumberCheck() {
-        if (mAuth.getCurrentUser().getPhoneNumber() != null) {
+        if (mAuth.getCurrentUser().getPhoneNumber() == null) {
             return true;
         }
         String currentnumber = mAuth.getCurrentUser().getPhoneNumber();
         String minicurrentNB = currentnumber.substring(3, currentnumber.length());
         String miniphoneNB = phonNumber.substring(1, phonNumber.length());
-
+        Log.i("numbercheck", currentnumber.toString());
+        Log.i("numbercheck", miniphoneNB.toString());
+        Log.i("numbercheck", "hi");
         return (minicurrentNB.equals(miniphoneNB)) ? false : true;
     }
 }

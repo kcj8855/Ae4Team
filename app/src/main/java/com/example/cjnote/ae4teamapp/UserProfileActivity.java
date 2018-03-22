@@ -110,8 +110,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         calendarView = (TextView) findViewById(R.id.birthTextView);
 
         if ((mAuth.getCurrentUser() != null)) {
-            userGenderCheck();
-            psaSetting();
+            if(mAuth.getCurrentUser().getProviders().size() != 0) {
+                userGenderCheck();
+                psaSetting();
+            }
         } else {
             Intent loginintent = new Intent(UserProfileActivity.this, LoginActivity.class);
             startActivity(loginintent);
@@ -387,9 +389,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp/" + System.currentTimeMillis() + ".jpg";
 
                 if (extras != null) {
+                    bitmap = extras.getParcelable("data");
                     iv_UserPhoto.setImageBitmap(bitmap);
-                    imageUpload();
                     storeCropImage(bitmap, filePath);
+                    imageUpload();
                     break;
                 }
 
